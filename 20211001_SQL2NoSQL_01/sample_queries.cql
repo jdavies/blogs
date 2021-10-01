@@ -11,3 +11,7 @@ select * from order_by_id where order_id = 2;
 select * from product_sales where product_id = 1 and order_date >= '2021-09-01' and order_date < '2021-10-01';
 select * from product_sales where product_id = 2 and order_date >= '2021-09-01' and order_date < '2021-10-01';
 select * from product_sales where product_id = 3 and order_date >= '2021-09-01' and order_date < '2021-10-01';
+
+select sum(quantity * unit_price), product_name 
+from product_sales 
+where product_id = 1 and order_date >= '2021-09-01' and order_date < '2021-10-01';
