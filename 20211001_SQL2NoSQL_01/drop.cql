@@ -5,3 +5,6 @@ drop table if exists customer_order;
 drop table if exists order_by_id;
 drop table if exists product_sales;
 drop type if exists line_item;
+
+-- *************** LINT ******************
+-- drop index if exists customer_order_status_idx;

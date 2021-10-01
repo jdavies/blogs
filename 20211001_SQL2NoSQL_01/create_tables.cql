@@ -43,11 +43,11 @@ create table product_sales (
     PRIMARY KEY((product_id), order_date)
 );
 
-drop index if exists customer_order_status_idx;
-CREATE CUSTOM INDEX customer_order_status_idx on 
-   customer_order(order_status) using 'StorageAttachedIndex';
 
 -- *************** LINT **********************
+-- CREATE CUSTOM INDEX customer_order_status_idx on 
+--    customer_order(order_status) using 'StorageAttachedIndex';
+--
 -- drop index if exists order_product_idx;
 -- CREATE CUSTOM INDEX order_product_idx on 
 --    order_by_id(full(line_items)) using 'StorageAttachedIndex';
