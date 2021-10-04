@@ -1,0 +1,37 @@
+-- Sample queries to eercise the database.
+
+-- Get the keysace info
+query GetKeyspace {
+  keyspace(name: "graphql") {
+    name
+    dcs {
+      name
+      replicas
+    }
+    tables {
+      name
+      columns {
+        name
+        kind
+        type {
+          basic
+          info {
+            name
+          }
+        }
+      }
+    }
+  }
+}
+
+# Query cutomer ID = 1
+# Be sure to specify the kayspace in the URL:
+# https://db350e3d-e35f-4dd7-89b7-8e9bfdad1c86-us-west-2.apps.astra.datastax.com/api/graphql/graphql
+query customer1 {
+  customers(value: { id: 1 }) {
+    values {
+      customer_id
+      name
+    }
+  }
+}
