@@ -1,6 +1,6 @@
--- Sample queries to eercise the database.
+# Sample queries to eercise the database.
 
--- Get the keysace info
+# Get the keysace info
 query GetKeyspace {
   keyspace(name: "graphql") {
     name
