@@ -28,10 +28,69 @@ query GetKeyspace {
 # Be sure to specify the kayspace in the URL:
 # https://db350e3d-e35f-4dd7-89b7-8e9bfdad1c86-us-west-2.apps.astra.datastax.com/api/graphql/graphql
 query customer1 {
-  customers(value: { id: 1 }) {
+  customers(value: { customer_id: 1 }) {
     values {
       customer_id
       name
+    }
+  }
+}
+
+# Get order 1
+query order1 {
+  customers(value: { order_id: 1 }) {
+    values {
+      order_id
+      customer_id
+      order_date
+    }
+  }
+}
+
+# Get the customer and order information at the same time
+query customer1_orders {
+  customers(value: { customer_id: 1 }) {
+    values {
+      customer_id
+      name
+    }
+  }
+  orders(value: { customer_id: 1 }) {
+    values {
+      order_id
+      order_date
+    }
+  }
+}
+
+# Add a new order for customer 1
+mutation {
+  order3: insertorders(
+    value: { order_id: 3, customer_id: 1, order_date: "2021-10-17T10:53:14.000" }
+    options: { consistency: LOCAL_QUORUM }
+  ) {
+    value {
+      order_id
+    }
+  }
+}
+
+# Insert customer 2 with an order at the same time
+mutation {
+  customer: insertcustomers(
+    value: { customer_id: 2, name: "Bob Hope" }
+    options: { consistency: LOCAL_QUORUM }
+  ) {
+    value {
+      name
+    }
+  }
+  order: insertorders(
+    value: { order_id: 2, customer_id: 2, order_date: "2021-10-01T05:53:14.000" }
+    options: { consistency: LOCAL_QUORUM }
+  ) {
+    value {
+      order_id
     }
   }
 }
