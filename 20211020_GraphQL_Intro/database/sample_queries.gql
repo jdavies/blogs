@@ -94,3 +94,98 @@ mutation {
     }
   }
 }
+
+# ***********************************
+#              With UUID
+# ***********************************
+
+# Get all customers
+query customers {
+  customers_uuid(value:{}) {
+    values {
+      customer_id
+      name
+    }
+  }
+}
+
+# Create a customer using a UUID
+mutation {
+  customer: insertcustomers_uuid(
+    value: { customer_id: "uuid()", name: "Lucille Ball" }
+    options: { consistency: LOCAL_QUORUM }
+  ) {
+    value {
+      customer_id
+      name
+    }
+  }
+}
+
+# Create an order for the customer we just created
+# You have to set copy/paste the customer_id to make this work
+mutation {
+  newOrder: insertorders_uuid(
+    value: { order_id: "uuid()", customer_id: "0064b734-b755-42cd-b1ae-a08123fd7251", order_date: "2021-10-13T15:06:14.000" }
+    options: { consistency: LOCAL_QUORUM }
+  ) {
+    value {
+      order_id
+      customer_id
+      order_date
+    }
+  }
+}
+
+# Get this new customer and their orders
+query lucilleball_orders {
+  customers_uuid(value: { customer_id: "0064b734-b755-42cd-b1ae-a08123fd7251" }) {
+    values {
+      customer_id
+      name
+    }
+  }
+  orders_uuid(value: { customer_id: "0064b734-b755-42cd-b1ae-a08123fd7251" }) {
+    values {
+      order_id
+      order_date
+    }
+  }
+}
+
+# Create a customer and an order at the same time
+mutation create_customer_and_order($cust_id : Uuid = "uuid()") {
+  customer: insertcustomers_uuid(
+    value: { customer_id: $cust_id, name: "Harold Lloyd" }
+    options: { consistency: LOCAL_QUORUM }
+  ) {
+    value {
+      customer_id
+      name
+    }
+  }
+  order: insertorders_uuid(
+    value: { order_id: "uuid()", customer_id: $cust_id, order_date: "2021-10-02T05:53:14.000" }
+    options: { consistency: LOCAL_QUORUM }
+  ) {
+    value {
+      order_id
+    }
+  }
+}
+
+# Get orders for a specific customer ID
+query customer_orders ($cust_id: Uuid = "0064b734-b755-42cd-b1ae-a08123fd7251"){
+  customers_uuid(value: { customer_id: $cust_id }) {
+    values {
+      customer_id
+      name
+    }
+  }
+  orders_uuid(value: { customer_id: $cust_id }) {
+    values {
+      order_id
+      order_date
+    }
+  }
+}
