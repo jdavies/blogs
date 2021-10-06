@@ -38,7 +38,7 @@ query customer1 {
 
 # Get order 1
 query order1 {
-  customers(value: { order_id: 1 }) {
+  orders(value: { order_id: 1 }) {
     values {
       order_id
       customer_id
@@ -64,7 +64,7 @@ query customer1_orders {
 }
 
 # Add a new order for customer 1
-mutation {
+mutation new_order {
   order3: insertorders(
     value: { order_id: 3, customer_id: 1, order_date: "2021-10-17T10:53:14.000" }
     options: { consistency: LOCAL_QUORUM }
@@ -76,8 +76,8 @@ mutation {
 }
 
 # Insert customer 2 with an order at the same time
-mutation {
-  customer: insertcustomers(
+mutation customer2_with_order {
+  insertcustomers(
     value: { customer_id: 2, name: "Bob Hope" }
     options: { consistency: LOCAL_QUORUM }
   ) {
@@ -85,7 +85,7 @@ mutation {
       name
     }
   }
-  order: insertorders(
+  insertorders(
     value: { order_id: 2, customer_id: 2, order_date: "2021-10-01T05:53:14.000" }
     options: { consistency: LOCAL_QUORUM }
   ) {
