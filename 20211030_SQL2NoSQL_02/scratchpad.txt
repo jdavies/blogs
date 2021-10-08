@@ -1,0 +1,28 @@
+
+create table test (
+    id uuid,
+    customer_id SET<UUID>,
+    primary key(id)
+);
+create custom index test_set_sai on test(customer_id) using 'StorageAttachedIndex';
+
+-- Customer 1: e42a1b38-2878-11ec-9621-0242ac130002
+-- Customer 2: ecffe6ca-2878-11ec-9621-0242ac130002
+
+insert into test(id, customer_id)
+values(fe0f9a14-2878-11ec-9621-0242ac130002, 
+    {
+    e42a1b38-2878-11ec-9621-0242ac130002, 
+    ecffe6ca-2878-11ec-9621-0242ac130002
+    }
+);
+
+insert into test(id, customer_id)
+values(332b3c70-287a-11ec-9621-0242ac130002, 
+    {
+    e42a1b38-2878-11ec-9621-0242ac130002
+    }
+);
+
+
+select * from test where customer_id contains e42a1b38-2878-11ec-9621-0242ac130002;
