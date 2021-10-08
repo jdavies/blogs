@@ -41,7 +41,7 @@ create table account_by_id (
     id uuid,
     customer_id uuid,
     name text,
-    -- Type may be Checking, Savings, Home Loan, 
+    -- Type may be Checking, Savings, Home Mortgage, 
     -- External (for paying other people/bills) etc
     account_type text,
     -- Used for External account_type only.

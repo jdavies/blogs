@@ -54,5 +54,18 @@ values(fae8a318-016e-400c-9372-b337a16a0524, 72431ad9-a785-4514-af8c-0280b94ea2f
    '408-555-0001',
    '100 Main Street', null, 'Santa Clara', 'CA', '95050', 'USA', 'Active');
 
-   -- Accounts for John Doe at Wells Fargo
-   
+-- Accounts for John Doe at Wells Fargo
+insert into account_by_id(id, customer_id, name,
+   account_type, external_account_id, created, balance)
+values(3d23b6b0-ed28-430d-8619-55849767398e, fae8a318-016e-400c-9372-b337a16a0524, 'Company Checking',
+  'Checking', null, '2015-11-08T10:35:17.000', 12534.15);
+
+insert into account_by_id(id, customer_id, name,
+   account_type, external_account_id, created, balance)
+values(d3a5197b-49d3-4aaa-b3f5-6a5ffce10d19, fae8a318-016e-400c-9372-b337a16a0524, 'Company Savings',
+  'Savings', null, '2015-11-08T10:35:25.000', 17453.15);
+
+insert into account_by_id(id, customer_id, name,
+   account_type, external_account_id, created, balance)
+values(d3a5197b-49d3-4aaa-b3f5-6a5ffce10d19, fae8a318-016e-400c-9372-b337a16a0524, 'Home Mortgage',
+  'Home Mortgage', '01-356-494-150', '2015-11-08T10:35:25.000', 17453.15);
