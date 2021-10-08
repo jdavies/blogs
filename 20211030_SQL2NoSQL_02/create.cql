@@ -39,7 +39,8 @@ create custom index customer_email on customer_by_id(email) using 'StorageAttach
 
 create table account_by_id (
     id uuid,
-    customer_id uuid,
+    -- One account may have multiple "owners" (aka a joint account)
+    customer_id SET<uuid>,
     name text,
     -- Type may be Checking, Savings, Home Mortgage, 
     -- External (for paying other people/bills) etc

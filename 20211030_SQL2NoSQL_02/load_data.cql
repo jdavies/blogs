@@ -22,24 +22,37 @@ values(0d554d51-add8-4693-a1e3-52b602f40132, 803df55b-3bb8-4cac-9b9b-9d148b7e711
    '408-555-0001',
    '100 Main Street', null, 'Santa Clara', 'CA', '95050', 'USA', 'Active');
 
+insert into customer_by_id(id, financial_institution_id, first_name, last_name, email, password,
+   phone_number, address_1, address_2, city, state, postal_code, country, status)
+values(26147150-2884-11ec-9621-0242ac130002, 803df55b-3bb8-4cac-9b9b-9d148b7e7117,
+   'Jane', 'Doe', 'jane.doe@datastax.com', 
+   -- Hashed password is 'demo'
+   '2a97516c354b68848cdbd8f54a226a0a55b21ed138e207ad6c5cbb9c00aa5aea',
+   '408-555-1234',
+   '100 Main Street', null, 'Santa Clara', 'CA', '95050', 'USA', 'Active');
+
 -- Accounts for John Doe at Bank of America
 insert into account_by_id(id, customer_id, name, account_type, external_account_id, created, balance)
-values(0298d77c-0f4b-4423-8e8d-408d5b90d847, 0d554d51-add8-4693-a1e3-52b602f40132, 'Personal Checking',
+values(0298d77c-0f4b-4423-8e8d-408d5b90d847, 
+   { 0d554d51-add8-4693-a1e3-52b602f40132, 26147150-2884-11ec-9621-0242ac130002 }, 'Personal Checking',
   'Checking', null, toTimestamp(now()), 2534.15);
 
 insert into account_by_id(id, customer_id, name, account_type, external_account_id, created, balance)
-values(ef2513b0-ba0e-42cf-815a-15246b2e3014, 0d554d51-add8-4693-a1e3-52b602f40132, 'Personal Savings',
+values(ef2513b0-ba0e-42cf-815a-15246b2e3014, 
+   { 0d554d51-add8-4693-a1e3-52b602f40132, 26147150-2884-11ec-9621-0242ac130002 }, 'Personal Savings',
   'Savings', null, '2020-01-15T13:00:00.000', 12345.67);
 
 -- External accounts for bill pay. External accounts do not have a balance.
 insert into account_by_id(id, customer_id, name,
   account_type, external_account_id, created, balance)
-values(65780208-f7a1-4196-8ffb-15844d7ead45, 0d554d51-add8-4693-a1e3-52b602f40132, 'Electrical Utility',
+values(65780208-f7a1-4196-8ffb-15844d7ead45, 
+   { 0d554d51-add8-4693-a1e3-52b602f40132, 26147150-2884-11ec-9621-0242ac130002 }, 'Electrical Utility',
   'External', 'A-2345-4-15069', '2020-01-15T13:00:00.000', null);
 
 insert into account_by_id(id, customer_id, name,
   account_type, external_account_id, created, balance)
-values(9a0040d7-f265-48ad-abc1-c2129f328818, 0d554d51-add8-4693-a1e3-52b602f40132, 'Wells Fargo Mortgage',
+values(9a0040d7-f265-48ad-abc1-c2129f328818, 
+   { 0d554d51-add8-4693-a1e3-52b602f40132, 26147150-2884-11ec-9621-0242ac130002 }, 'Wells Fargo Mortgage',
   'External', '01-356-494-150', '2005-10-15T15:00:00.000', null);
 
 -- 
