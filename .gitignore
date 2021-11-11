@@ -1,0 +1,4 @@
+.terraform/
+.terraform.lock.hcl
+**/setenv.sh
+20211115_Astra_Terraform/example
