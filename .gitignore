@@ -2,3 +2,5 @@
 .terraform.lock.hcl
 **/setenv.sh
 20211115_Astra_Terraform/example
+20211115_Astra_Terraform/terraform.tfstate
+20211115_Astra_Terraform/terraform.tfstate.backup
