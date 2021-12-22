@@ -41,9 +41,3 @@ terraform destroy -var="token=$ASTRA_API_TOKEN"
 ## Custom Roles
 
 Custom roles (as shown in the resource.tf file) are based on an array of string valuess in the ```policy``` field. You can find a list of possible values for these strings [here](https://docs.datastax.com/en/astra/docs/user-permissions.html).
-
-client_idx = "value = vvSRMqQwGaetHxDQwXREqiDu"
-client_secretx = "value = ZGMv.SKAXAPGDJ-6EZtD6m1.4F3NgFje,IQ+kbpgYmDvzGQUZm6B4uGWsKBXHyfZ3Wx+211dB,PTU.Hb3nl-T+XypswzYD604CoJloPZa6TuIAgApKCM5FZrq8ZrOTAB"
-results = "database_id = d02f8b25-5c9b-496f-805e-fc2946bcd0a9 testvar = ABC123"
-token = "value = AstraCS:vvSRMqQwGaetHxDQwXREqiDu:1c80371e6a660778f1c1d51601e60bcf2c199355c1acb5ce8e0642e7bd156545"
-
